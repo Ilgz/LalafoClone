@@ -62,12 +62,10 @@ class _MyAppState extends State<MyApp> {
             icon: Icon(
               Icons.person,
               color: Colors.deepPurple,
-              size: 36,
             ),
             activeIcon: Icon(
               Icons.person,
               color: Colors.black,
-              size: 36,
             ),
           ),
         ],

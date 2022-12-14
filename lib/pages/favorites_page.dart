@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../screen2.dart';
 
 class FavoritesPage extends StatelessWidget {
   const FavoritesPage({Key? key}) : super(key: key);
@@ -12,9 +11,9 @@ class FavoritesPage extends StatelessWidget {
       child: Center(
         child: ElevatedButton(
           onPressed: () {
-            Navigator.push(context, MaterialPageRoute(
-                builder: (context) => Screen2()
-            ));
+            // Navigator.push(context, MaterialPageRoute(
+            //     builder: (context) => Screen2()
+            // ));
           },
           child: Text('Go to next screen'),
         ),
