@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:lalafo/blocs/home_bloc.dart';
 import 'package:lalafo/pages/favorites_page.dart';
 import 'package:lalafo/pages/home_page.dart';
 import 'package:lalafo/pages/profile_page.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
 void main() {
-  runApp(MaterialApp(
-    debugShowCheckedModeBanner: false,
-    home: MyApp(),
+  runApp(BlocProvider(
+    create: (context) => HomeBloc()..add(HomeBlocLoadProductsEvent()),
+    child: MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: MyApp(),
+    ),
   ));
 }
 
@@ -20,11 +24,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   int _selectedIndex = 0;
 
-  List<Widget> _list = <Widget>[
-    HomePage(),
-    FavoritesPage(),
-    ProfilePage()
-  ];
+  List<Widget> _list = <Widget>[HomePage(), FavoritesPage(), ProfilePage()];
 
   @override
   Widget build(BuildContext context) {
@@ -37,32 +37,38 @@ class _MyAppState extends State<MyApp> {
         items: const [
           BottomNavigationBarItem(
             label: 'Главная',
-      icon: Icon(Icons.home,
-          color: Colors.deepPurple,
+            icon: Icon(
+              Icons.home,
+              color: Colors.deepPurple,
+            ),
+            activeIcon: Icon(
+              Icons.home,
+              color: Colors.black,
+            ),
           ),
-          activeIcon: Icon(Icons.home,
-          color: Colors.black,
-    ),
-    ),
           BottomNavigationBarItem(
-              label: "Избранное",
-              icon: Icon(Icons.favorite,
-          color: Colors.deepPurple,
-          ),
-            activeIcon: Icon(Icons.favorite,
-            color: Colors.black,
+            label: "Избранное",
+            icon: Icon(
+              Icons.favorite,
+              color: Colors.deepPurple,
+            ),
+            activeIcon: Icon(
+              Icons.favorite,
+              color: Colors.black,
             ),
           ),
           BottomNavigationBarItem(
             label: 'Профиль',
-            icon: Icon(Icons.person,
-          color: Colors.deepPurple,
-          size: 36,
-          ),
-          activeIcon: Icon(Icons.person,
-          color: Colors.black,
-          size: 36,
-          ),
+            icon: Icon(
+              Icons.person,
+              color: Colors.deepPurple,
+              size: 36,
+            ),
+            activeIcon: Icon(
+              Icons.person,
+              color: Colors.black,
+              size: 36,
+            ),
           ),
         ],
         onTap: (index) {
@@ -71,14 +77,14 @@ class _MyAppState extends State<MyApp> {
           });
         },
       ),
-        // body: Center(
-        //     child: ElevatedButton(
-        //       onPressed: () {
-        //         Route route = MaterialPageRoute(builder: (context) => SecondPage());
-        //         Navigator.push(context, route);
-        //       }, child: Text('Next'),
-        //     ))
-          body: _list.elementAt(_selectedIndex),
+      // body: Center(
+      //     child: ElevatedButton(
+      //       onPressed: () {
+      //         Route route = MaterialPageRoute(builder: (context) => SecondPage());
+      //         Navigator.push(context, route);
+      //       }, child: Text('Next'),
+      //     ))
+      body: _list.elementAt(_selectedIndex),
     );
   }
 
@@ -89,7 +95,7 @@ class _MyAppState extends State<MyApp> {
   //     padding: EdgeInsets.all(0.0),
   //   );
 
-  }
+}
   // First Attempt
 //   Widget _getItemUI(BuildContext context, int index) {
 //     return Text(_list[index]);
